@@ -1,0 +1,956 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>tsoa - v3.0.5</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">tsoa - v3.0.5</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>tsoa - v3.0.5</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#tsoa" id="tsoa" style="color: inherit; text-decoration: none;">
+					<h1>tsoa</h1>
+				</a>
+				<p>Pronounced so·uh</p>
+				<p><a href="https://codeship.com/projects/160322"><img src="https://codeship.com/projects/cdce38d0-1f6b-0134-258e-1ed679ae6c9d/status?branch=master" alt="Codeship Status for lukeautry/tsoa"></a>
+				<a href="https://www.npmjs.com/package/tsoa"><img src="https://img.shields.io/npm/v/tsoa/v3beta" alt="npm version"></a></p>
+				<a href="#this-readme-is-intended-for-tsoa-v3-beta-for-stable-releases-please-refer-to-the-readme-of-the-2x-branch" id="this-readme-is-intended-for-tsoa-v3-beta-for-stable-releases-please-refer-to-the-readme-of-the-2x-branch" style="color: inherit; text-decoration: none;">
+					<h2>This Readme is intended for tsoa v3-beta, for stable releases, please refer to the Readme of the <a href="https://github.com/lukeautry/tsoa/tree/2.x">2.x branch</a>.</h2>
+				</a>
+				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+					<h2>Table of Contents</h2>
+				</a>
+				<ul>
+					<li><a href="#goal">Goal</a></li>
+					<li><a href="#philosophy">Philosophy</a></li>
+					<li><a href="#how-it-works">How it works</a><ul>
+							<li><a href="#installation">Installation</a></li>
+							<li><a href="#create-controllers">Create Controllers</a></li>
+							<li><a href="#create-models">Create Models</a></li>
+							<li><a href="#generate">Generate</a><ul>
+									<li><a href="#using-cli">Using CLI</a></li>
+									<li><a href="#programmatic">Programmatic</a></li>
+									<li><a href="#automating-regeneration">Automating Regeneration</a></li>
+								</ul>
+							</li>
+							<li><a href="#can-i-use-openapi-3-instead-of-openapi-2-(formerly-swagger)">Can I use OpenAPI 3.0 instead of OpenAPI 2 (formerly Swagger)?</a></li>
+							<li><a href="#how-to-ensure-no-additional-properties-come-in-at-runtime">How to ensure no additional properties come in at runtime</a></li>
+							<li><a href="#dealing-with-duplicate-model-names">Dealing with duplicate model names</a></li>
+							<li><a href="#overriding-route-template">Overriding route template</a></li>
+							<li><a href="#consuming-generated-routes">Consuming generated routes</a></li>
+							<li><a href="#get-access-to-the-request-object-of-express-in-controllers">Get access to the request object of express in Controllers</a></li>
+							<li><a href="#dependency-injection-or-ioc">Dependency injection or IOC</a><ul>
+									<li><a href="#inversifyjs">InversifyJS</a></li>
+									<li><a href="#typescript-ioc">typescript-ioc</a></li>
+								</ul>
+							</li>
+							<li><a href="#specify-error-response-types-for-openapi">Specify error response types for OpenAPI</a></li>
+							<li><a href="#authentication">Authentication</a></li>
+							<li><a href="#path-mapping">Path mapping</a></li>
+							<li><a href="#uploading-files">Uploading files</a></li>
+							<li><a href="#using-awesome-openapi-tools">Using awesome OpenAPI tools</a></li>
+						</ul>
+					</li>
+					<li><a href="#decorators">Decorators</a><ul>
+							<li><a href="#security">Security</a></li>
+							<li><a href="#tags">Tags</a></li>
+							<li><a href="#operationid">OperationId</a></li>
+							<li><a href="#deprecated">Deprecated</a></li>
+						</ul>
+					</li>
+					<li><a href="#command-line-interface">Command Line Interface</a><ul>
+							<li><a href="#spec-generation">OpenAPI spec generation</a></li>
+							<li><a href="#route-generation">Route generation</a></li>
+						</ul>
+					</li>
+					<li><a href="#examples">Examples</a></li>
+					<li><a href="#help-wanted">Help wanted</a></li>
+				</ul>
+				<a href="#goal" id="goal" style="color: inherit; text-decoration: none;">
+					<h2>Goal</h2>
+				</a>
+				<ul>
+					<li>TypeScript controllers and models as the single source of truth for your API</li>
+					<li>A valid OpenAPI (formerly Swagger) spec (2.0 or 3.0 if you choose 😍) is generated from your controllers and models, including:<ul>
+							<li>Paths (e.g. GET /Users)</li>
+							<li>Definitions based on TypeScript interfaces (models)</li>
+							<li>Parameters/model properties marked as required or optional based on TypeScript (e.g. myProperty?: string is optional in the OpenAPI spec)</li>
+							<li>jsDoc supported for object descriptions (most other metadata can be inferred from TypeScript types)</li>
+						</ul>
+					</li>
+					<li>Routes are generated for middleware of choice<ul>
+							<li>Express, Hapi, and Koa currently supported, other middleware can be supported using a simple handlebars template</li>
+							<li>Validate request payloads</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#philosophy" id="philosophy" style="color: inherit; text-decoration: none;">
+					<h2>Philosophy</h2>
+				</a>
+				<ul>
+					<li>Rely on TypeScript type annotations to generate API metadata if possible</li>
+					<li>If regular type annotations aren&#39;t an appropriate way to express metadata, use decorators</li>
+					<li>Use jsdoc for pure text metadata (e.g. endpoint descriptions)</li>
+					<li>Minimize boilerplate</li>
+					<li>Models are best represented by interfaces (pure data structures), but can also be represented by classes</li>
+					<li>Runtime validation of tsoa should behave as closely as possible to the specifications that the generated OpenAPI 2/3 schema describes. Any differences in validation logic are clarified by logging warnings during the generation of the OpenAPI Specification (OAS) and/or the routes.<ul>
+							<li>Please note that by enabling OpenAPI 3 you minimize the chances of divergent validation logic since OpenAPI 3 has a more expressive schema syntax.</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#how-it-works" id="how-it-works" style="color: inherit; text-decoration: none;">
+					<h2>How it works</h2>
+				</a>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h3>Installation</h3>
+				</a>
+				<pre><code class="language-sh">npm install tsoa --save
+// OR
+npm install lukeautry/tsoa<span class="hljs-comment">#[VERSION]</span></code></pre>
+				<a href="#create-controllers" id="create-controllers" style="color: inherit; text-decoration: none;">
+					<h3>Create Controllers</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-comment">// controllers/usersController.ts</span>
+
+<span class="hljs-keyword">import</span> { Body, Controller, Get, Header, Path, Post, Query, Route, SuccessResponse } <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+<span class="hljs-keyword">import</span> { User, UserCreationRequest } <span class="hljs-keyword">from</span> <span class="hljs-string">'../models/user'</span>;
+<span class="hljs-keyword">import</span> { UserService } <span class="hljs-keyword">from</span> <span class="hljs-string">'../services/userService'</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'Users'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UsersController <span class="hljs-keyword">extends</span> Controller {
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">'{id}'</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> getUser(id: <span class="hljs-built_in">number</span>, <span class="hljs-meta">@Query</span>() name: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> UserService().get(id);
+  }
+
+  <span class="hljs-meta">@SuccessResponse</span>(<span class="hljs-string">'201'</span>, <span class="hljs-string">'Created'</span>) <span class="hljs-comment">// Custom success response</span>
+  <span class="hljs-meta">@Post</span>()
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> createUser(<span class="hljs-meta">@Body</span>() requestBody: UserCreationRequest): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt; {
+    <span class="hljs-keyword">new</span> UserService().create(request);
+    <span class="hljs-keyword">this</span>.setStatus(<span class="hljs-number">201</span>); <span class="hljs-comment">// set return status 201</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve();
+  }
+
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">'subResource/{subResourceId}'</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> getSubResource(<span class="hljs-meta">@Path</span>(<span class="hljs-string">'subResourceId'</span>) aliasedPathId: <span class="hljs-built_in">number</span>, <span class="hljs-meta">@Header</span>(<span class="hljs-string">'Authorization'</span>) authorization: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> UserService().getSubResource(aliasedPathId);
+  }
+}</code></pre>
+				<p>Note: tsoa can not create OpenAPI 2 (formerly Swagger) documents from interfaces that are defined in external dependencies. This is by design. Full explanation available in <a href="https://github.com/lukeautry/tsoa/blob/master/docs/ExternalInterfacesExplanation.MD">ExternalInterfacesExplanation.MD</a></p>
+				<a href="#create-models" id="create-models" style="color: inherit; text-decoration: none;">
+					<h3>Create Models</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-comment">// models/user.ts</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> User {
+  id: <span class="hljs-built_in">number</span>;
+  email: <span class="hljs-built_in">string</span>;
+  name: Name;
+  status?: status;
+  phoneNumbers: <span class="hljs-built_in">string</span>[];
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> status = <span class="hljs-string">'Happy'</span> | <span class="hljs-string">'Sad'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Name {
+  first: <span class="hljs-built_in">string</span>;
+  last?: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> UserCreationRequest {
+  email: <span class="hljs-built_in">string</span>;
+  name: Name;
+  phoneNumbers: <span class="hljs-built_in">string</span>[];
+}</code></pre>
+				<a href="#generate" id="generate" style="color: inherit; text-decoration: none;">
+					<h3>Generate</h3>
+				</a>
+				<a href="#using-cli" id="using-cli" style="color: inherit; text-decoration: none;">
+					<h4>Using CLI</h4>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-comment">// generate OAS</span>
+tsoa spec
+
+<span class="hljs-comment">// generate routes</span>
+tsoa routes</code></pre>
+				<p>See <a href="#command-line-interface">CLI documentation</a></p>
+				<a href="#programmatic" id="programmatic" style="color: inherit; text-decoration: none;">
+					<h4>Programmatic</h4>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { generateRoutes, generateSpec, ExtendedRoutesConfig, ExtendedSpecConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+
+<span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> specOptions: ExtendedSpecConfig = {
+    basePath: '/api',
+    entryFile: './api/server.ts',
+    specVersion: 3,
+    outputDirectory: './api/dist',
+    controllerPathGlobs: ['./routeControllers<span class="hljs-comment">/**/</span>*Controller.ts'],
+  };
+
+  <span class="hljs-keyword">const</span> routeOptions: ExtendedRoutesConfig = {
+    basePath: '/api',
+    entryFile: './api/server.ts',
+    routesDir: './api',
+  };
+
+  <span class="hljs-keyword">await</span> generateSpec(<span class="hljs-params">specOptions</span>);
+
+  <span class="hljs-keyword">await</span> generateRoutes(<span class="hljs-params">routeOptions</span>);
+}</span>)<span class="hljs-params">()</span>;</span></code></pre>
+				<p><strong>Note:</strong> If you use tsoa pragmatically, please be aware that tsoa&#39;s methods can (under rare circumstances) change in minor and patch releases. But if you are using tsoa in a .ts file, then TypeScript will help you migrate to any changes. We reserve this right to change what are essentially our internal methods so that we can continue to provide incremental value to the majority user (our CLI users). The CLI however will only receive breaking changes during a major release.</p>
+				<a href="#automating-regeneration" id="automating-regeneration" style="color: inherit; text-decoration: none;">
+					<h4>Automating Regeneration</h4>
+				</a>
+				<p>You might find it convenient to automatically generate again. To do this, add a section to your package.json&#39;s script section with the following:</p>
+				<pre><code class="language-js">  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-comment">// ... other stuff (note that comments are not valid JSON, so please remove this)</span>
+    <span class="hljs-string">"tsoa:gen"</span>: <span class="hljs-string">"yarn tsoa spec -c ./api/tsoa.json &amp;&amp; yarn tsoa routes -c ./api/tsoa.json"</span>
+  },</code></pre>
+				<p>Then when you&#39;ve made a change to an API, you simply run &quot;yarn tsoa:gen&quot;</p>
+				<p>Note: You can also integrate the OpenAPI 2 (formerly Swagger) regeneration directly into your build step, but there are risks. To do that, ADDITIONAL add it to your build script in package.json:</p>
+				<pre><code class="language-js">  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-comment">// ... other stuff (note that comments are not valid JSON, so please remove this)</span>
+    <span class="hljs-string">"build:api"</span>: <span class="hljs-string">"tsoa:gen &amp;&amp; yarn tsc -p ./api/tsconfig.json"</span>,
+  },</code></pre>
+				<a href="#can-i-use-openapi-3-instead-of-openapi-2-formerly-swagger" id="can-i-use-openapi-3-instead-of-openapi-2-formerly-swagger" style="color: inherit; text-decoration: none;">
+					<h3>Can I use OpenAPI 3 instead of OpenAPI 2 (formerly Swagger)?</h3>
+				</a>
+				<p>Yes, set <code>spec.specVersion</code> to <code>3</code> in your <code>tsoa.json</code> file. See more config options by looking at <a href="https://github.com/lukeautry/tsoa/blob/master/src/config.ts">the config type definition</a>.</p>
+				<a href="#how-to-ensure-no-additional-properties-come-in-at-runtime" id="how-to-ensure-no-additional-properties-come-in-at-runtime" style="color: inherit; text-decoration: none;">
+					<h3>How to ensure no additional properties come in at runtime</h3>
+				</a>
+				<p>By default, OpenAPI allows for models to have <a href="https://swagger.io/docs/specification/data-models/dictionaries/"><code>additionalProperties</code></a>. If you would like to ensure at runtime that the data has only the properties defined in your models, set the <code>noImplicitAdditionalProperties</code> <a href="https://github.com/lukeautry/tsoa/blob/master/src/config.ts">config</a> option to either <code>&quot;silently-remove-extras&quot;</code> or <code>&quot;throw-on-extras&quot;</code>.</p>
+				<p>Caveats:</p>
+				<ul>
+					<li>The following types will always allow additional properties due to the nature of the way they work:<ul>
+							<li>The <code>any</code> type</li>
+							<li>An indexed type (which explicitly allows additional properties) like <code>export interface IStringToStringDictionary { [key: string] : string }</code></li>
+						</ul>
+					</li>
+					<li>If you are using tsoa for an existing service that has consumers...<ul>
+							<li>you will need to inform your consumers before setting <code>noImplicitAdditionalProperties</code> to <code>&quot;throw-on-extras&quot;</code> since it would be a breaking change (due to the fact that request bodies that previously worked would now get an error).</li>
+						</ul>
+					</li>
+					<li>Regardless, <code>&quot;noImplicitAdditionalProperties&quot; : &quot;silently-remove-extras&quot;</code> is a great choice for both legacy AND new APIs (since this mirrors the behavior of C# serializers and other popular JSON serializers).</li>
+				</ul>
+				<a href="#dealing-with-duplicate-model-names" id="dealing-with-duplicate-model-names" style="color: inherit; text-decoration: none;">
+					<h3>Dealing with duplicate model names</h3>
+				</a>
+				<p>If you have multiple models with the same name, you may get errors indicating that there are multiple matching models. If you&#39;d like to designate a class/interface as the &#39;canonical&#39; version of a model, add a jsdoc element marking it as such:</p>
+				<pre><code class="language-ts"><span class="hljs-comment">/**
+ * @tsoaModel
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> MyModel {
+  ...
+}</code></pre>
+				<a href="#overriding-route-template" id="overriding-route-template" style="color: inherit; text-decoration: none;">
+					<h3>Overriding route template</h3>
+				</a>
+				<p>If you want functionality that tsoa doesn&#39;t provide, then one powerful (but potentially costly approach) is to provide tsoa with a custom handlebars template to use when generating the routes.ts file.</p>
+				<p><strong>WARNING</strong> Using a custom template means that you will have a more difficult time migrating to new versions of tsoa since your template interacts with the tsoa internals. So, to get the newest and best features of tsoa, please use one of provided templates by selecting your chosen <code>&quot;middleware&quot;</code> (i.e. &quot;koa&quot;, &quot;express&quot;, or &quot;hapi&quot;) and by omitting <code>&quot;middlewareTemplate&quot;</code>. <strong>END WARNING</strong></p>
+				<p><em>Okay, but why would you want to override the route template?</em></p>
+				<ul>
+					<li>Are you using a server framework that we don&#39;t yet support? If so, then <a href="https://github.com/lukeautry/tsoa/issues">please open an issue first</a>. It&#39;s likely that we will try to accept your custom template as one of the new standard options. If we can&#39;t support the new framework, then we&#39;ll recommend a custom route template.</li>
+					<li>Do you have a very specific requirement? Have you already opened an issue and have the tsoa maintainers opted not to support this feature? Then a custom template might solve your needs best.</li>
+				</ul>
+				<p>Route templates are generated from predefined handlebar templates. You can override and define your own template to use
+				by defining it in your tsoa.json configuration. Route paths are generated based on the middleware type you have defined.</p>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"spec"</span>: {
+    ...
+  },
+  <span class="hljs-string">"routes"</span>: {
+    <span class="hljs-string">"entryFile"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"routesDir"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"middleware"</span>: <span class="hljs-string">"express"</span>,
+    <span class="hljs-string">"middlewareTemplate"</span>: <span class="hljs-string">"custom-template.ts"</span>
+    ...
+  }
+}</code></pre>
+				<a href="#consuming-generated-routes" id="consuming-generated-routes" style="color: inherit; text-decoration: none;">
+					<h3>Consuming generated routes</h3>
+				</a>
+				<p>You have two options for how to tell tsoa where it can find the controllers that it will use to create the auto-generated <code>routes.ts</code> file.</p>
+				<a href="#1-using-automatic-controllers-discovery" id="1-using-automatic-controllers-discovery" style="color: inherit; text-decoration: none;">
+					<h4>(1) Using automatic controllers discovery</h4>
+				</a>
+				<p>You can tell <code>tsoa</code> to use your automatic controllers discovery by providing a <a href="http://www.globtester.com/">minimatch glob</a> in the <a href="https://github.com/lukeautry/tsoa/blob/master/src/config.ts">config</a> file (e.g. <code>tsoa.json</code>). It can be provided on <code>config.spec</code> or <code>config.routes</code>.</p>
+				<p>Pros:</p>
+				<ul>
+					<li>New developers can add a controller without having to know how tsoa &quot;crawls&quot; for the controllers. As long as their controller is caught by the glob that you provide, the controller will be added to the OpenAPI documentation and to the auto-generated <code>routes.ts</code> file.</li>
+				</ul>
+				<p>Cons:</p>
+				<ul>
+					<li>It could be potentially slower (but not significantly slow) than the alternative option described further down in the readme.</li>
+				</ul>
+				<p>As you can see from the the controllers globs patterns below, you can provide multiple globs of various patterns:</p>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"routes"</span>: {
+    <span class="hljs-string">"entryFile"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"routesDir"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"middleware"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"controllerPathGlobs"</span>: [
+      <span class="hljs-string">"./dir-with-controllers/*"</span>,
+      <span class="hljs-string">"./recursive-dir/**/*"</span>,
+      <span class="hljs-string">"./custom-filerecursive-dir/**/*.controller.ts"</span>
+    ]
+  }
+}</code></pre>
+				<a href="#2-manually-telling-tsoa-which-controllers-to-use-in-the-app-entry-file" id="2-manually-telling-tsoa-which-controllers-to-use-in-the-app-entry-file" style="color: inherit; text-decoration: none;">
+					<h4>(2) Manually telling tsoa which controllers to use in the app entry file</h4>
+				</a>
+				<p>Tsoa can &quot;crawl&quot; the index file to look for controllers that have the <code>@Route</code> decorator.</p>
+				<p>Pros:</p>
+				<ul>
+					<li>The tsoa route generation will be faster.</li>
+				</ul>
+				<p>Cons:</p>
+				<ul>
+					<li>New developers on your team might add a controller and not understand why the new controller was not exposed to the router or to the OpenAPI generation. If this is a problem for you, please us the automatic controller discovery option described above.</li>
+				</ul>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> methodOverride <span class="hljs-keyword">from</span> <span class="hljs-string">'method-override'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">'express'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> bodyParser <span class="hljs-keyword">from</span> <span class="hljs-string">'body-parser'</span>;
+<span class="hljs-keyword">import</span> {RegisterRoutes} <span class="hljs-keyword">from</span> <span class="hljs-string">'./routes'</span>;
+
+<span class="hljs-comment">// ########################################################################</span>
+<span class="hljs-comment">// controllers need to be referenced in order to get crawled by the generator</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./controllers/usersController'</span>;
+<span class="hljs-comment">// ########################################################################</span>
+
+<span class="hljs-keyword">const</span> app = express();
+app.use(bodyParser.urlencoded({ extended: <span class="hljs-literal">true</span> }));
+app.use(bodyParser.json());
+app.use(methodOverride());
+
+RegisterRoutes(app);
+
+app.listen(<span class="hljs-number">3000</span>);</code></pre>
+				<a href="#get-access-to-the-request-object-of-express-or-koa-in-controllers" id="get-access-to-the-request-object-of-express-or-koa-in-controllers" style="color: inherit; text-decoration: none;">
+					<h3>Get access to the request object of express (or koa) in Controllers</h3>
+				</a>
+				<p>To access the request object of express in a controller method use the <code>@Request</code>-decorator:</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// controllers/usersController.ts</span>
+
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">'express'</span>;
+<span class="hljs-keyword">import</span> {Get, Route, Request} <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+<span class="hljs-keyword">import</span> {User, UserCreationRequest} <span class="hljs-keyword">from</span> <span class="hljs-string">'../models/user'</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'Users'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UsersController {
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">'{id}'</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> getUser(id: <span class="hljs-built_in">number</span>, <span class="hljs-meta">@Request</span>() request: express.Request): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> implement some code that uses the request as well</span>
+  }
+}</code></pre>
+				<p>To access Koa&#39;s request object (which has the ctx object) in a controller method use the <code>@Request</code>-decorator:</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// controllers/usersController.ts</span>
+
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> koa <span class="hljs-keyword">from</span> <span class="hljs-string">'koa'</span>;
+<span class="hljs-keyword">import</span> {Get, Route, Request} <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+<span class="hljs-keyword">import</span> {User, UserCreationRequest} <span class="hljs-keyword">from</span> <span class="hljs-string">'../models/user'</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'Users'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UsersController {
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">'{id}'</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> getUser(id: <span class="hljs-built_in">number</span>, <span class="hljs-meta">@Request</span>() request: koa.Request): <span class="hljs-built_in">Promise</span>&lt;User&gt; {
+    <span class="hljs-keyword">const</span> ctx = request.ctx;
+      <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> implement some code that uses the request as well</span>
+  }
+}</code></pre>
+				<p>Note that the parameter <code>request</code> does not appear in your OAS file.
+					Likewise you can use the decorator <code>@Inject</code> to mark a parameter as being injected manually and should be omitted in Spec generation.
+				In this case you should write your own custom template where you inject the needed objects/values in the method-call.</p>
+				<a href="#dependency-injection-or-ioc" id="dependency-injection-or-ioc" style="color: inherit; text-decoration: none;">
+					<h3>Dependency injection or IOC</h3>
+				</a>
+				<p>By default all the controllers are created by the auto-generated routes template using an empty default constructor.
+				If you want to use dependency injection and let the DI-framework handle the creation of your controllers you can use <a href="https://github.com/inversify/InversifyJS">inversifyJS</a> or <a href="https://github.com/thiagobustamante/typescript-ioc">typescript-ioc</a></p>
+				<a href="#inversifyjs" id="inversifyjs" style="color: inherit; text-decoration: none;">
+					<h4>InversifyJS</h4>
+				</a>
+				<p>To tell <code>tsoa</code> to use your DI-container you have to reference your module exporting the DI-container in the <a href="https://github.com/lukeautry/tsoa/blob/master/src/config.ts">config</a> file (e.g. <code>tsoa.json</code>):
+				The convention is that you have to name your inversify <code>Container</code> <code>iocContainer</code> and export it in the given module.</p>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"spec"</span>: {
+    ...
+  },
+  <span class="hljs-string">"routes"</span>: {
+    <span class="hljs-string">"entryFile"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"routesDir"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"middleware"</span>: <span class="hljs-string">"..."</span>,
+    <span class="hljs-string">"iocModule"</span>: <span class="hljs-string">"./inversify/ioc"</span>,
+    ...
+  }
+}</code></pre>
+				<p>Note that as of 1.1.1 the path is now relative to the your current working directory like the other paths.</p>
+				<p>Here is some example code to setup the container and your controller with inversify.js.</p>
+				<p><code>./inversify/ioc.ts</code>:</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Container, inject, interfaces } <span class="hljs-keyword">from</span> <span class="hljs-string">'inversify'</span>;
+<span class="hljs-keyword">import</span> { autoProvide, makeProvideDecorator, makeFluentProvideDecorator } <span class="hljs-keyword">from</span> <span class="hljs-string">'inversify-binding-decorators'</span>;
+
+<span class="hljs-keyword">let</span> iocContainer = <span class="hljs-keyword">new</span> Container();
+
+<span class="hljs-keyword">let</span> provide = makeProvideDecorator(iocContainer);
+<span class="hljs-keyword">let</span> fluentProvider = makeFluentProvideDecorator(iocContainer);
+
+<span class="hljs-keyword">let</span> provideNamed = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">
+  identifier: <span class="hljs-built_in">string</span> | symbol | interfaces.Newable&lt;<span class="hljs-built_in">any</span>&gt; | interfaces.Abstract&lt;<span class="hljs-built_in">any</span>&gt;,
+  name: <span class="hljs-built_in">string</span>
+</span>) </span>{
+  <span class="hljs-keyword">return</span> fluentProvider(identifier)
+    .whenTargetNamed(name)
+    .done();
+};
+
+<span class="hljs-keyword">let</span> provideSingleton = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">
+  identifier: <span class="hljs-built_in">string</span> | symbol | interfaces.Newable&lt;<span class="hljs-built_in">any</span>&gt; | interfaces.Abstract&lt;<span class="hljs-built_in">any</span>&gt;
+</span>) </span>{
+  <span class="hljs-keyword">return</span> fluentProvider(identifier)
+    .inSingletonScope()
+    .done();
+};
+
+<span class="hljs-keyword">export</span> { iocContainer, autoProvide, provide, provideSingleton, provideNamed, inject };</code></pre>
+				<p><code>./controllers/fooController.ts</code></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Route } <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+<span class="hljs-keyword">import</span> { provideSingleton, inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'../inversify/ioc'</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'foo'</span>)
+<span class="hljs-meta">@provideSingleton</span>(FooController)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FooController {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+    <span class="hljs-meta">@inject</span>(FooService) <span class="hljs-keyword">private</span> fooService: FooService
+  </span>) { }
+  ...
+}
+
+<span class="hljs-meta">@provideSingleton</span>(FooService)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FooService {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+    <span class="hljs-comment">// maybe even more dependencies to be injected...</span>
+  </span>)
+}</code></pre>
+				<a href="#typescript-ioc" id="typescript-ioc" style="color: inherit; text-decoration: none;">
+					<h4>typescript-ioc</h4>
+				</a>
+				<p>Here is some example code to setup the controller with typescript-ioc.</p>
+				<p><code>./controllers/fooController.ts</code></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Route } <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+<span class="hljs-keyword">import</span> { Inject, Provides } <span class="hljs-keyword">from</span> <span class="hljs-string">"typescript-ioc"</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'foo'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FooController {
+
+  <span class="hljs-meta">@Inject</span>
+  <span class="hljs-keyword">private</span> fooService: FooService
+  ...
+
+}
+
+<span class="hljs-meta">@Provides</span>(FooService)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FooService {
+
+}</code></pre>
+				<p>The controllers need to be included in the application in order to be linked.</p>
+				<p><code>index.ts</code></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> <span class="hljs-string">"./controllers/fooController.ts"</span>
+...
+</code></pre>
+				<a href="#specify-error-response-types-for-openapi" id="specify-error-response-types-for-openapi" style="color: inherit; text-decoration: none;">
+					<h3>Specify error response types for OpenAPI</h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-meta">@Response</span>(<span class="hljs-string">'400'</span>, <span class="hljs-string">'Bad request'</span>)
+<span class="hljs-meta">@Response</span>&lt;ErrorResponse&gt;(<span class="hljs-string">'default'</span>, <span class="hljs-string">'Unexpected error'</span>)
+<span class="hljs-meta">@Get</span>(<span class="hljs-string">'Response'</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> getResponse(): <span class="hljs-built_in">Promise</span>&lt;TestModel&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModelService().getModel();
+}</code></pre>
+				<p>For information on how to return a specific error <a href="https://github.com/lukeautry/tsoa/issues/382">see this example</a>.</p>
+				<a href="#authentication" id="authentication" style="color: inherit; text-decoration: none;">
+					<h3>Authentication</h3>
+				</a>
+				<p>Authentication is done using a middleware handler along with <code>@Security(&#39;name&#39;, [&#39;scopes&#39;])</code> decorator in your controller.</p>
+				<p>First, define the security definitions for OpenAPI, and also configure where the authentication middleware handler is. In this case, it is in the <code>authentication.ts</code> file.</p>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"spec"</span>: {
+    <span class="hljs-string">"securityDefinitions"</span>: {
+        <span class="hljs-string">"api_key"</span>: {
+            <span class="hljs-string">"type"</span>: <span class="hljs-string">"apiKey"</span>,
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"access_token"</span>,
+            <span class="hljs-string">"in"</span>: <span class="hljs-string">"query"</span>
+        },
+        <span class="hljs-string">"tsoa_auth"</span>: {
+            <span class="hljs-string">"type"</span>: <span class="hljs-string">"oauth2"</span>,
+            <span class="hljs-string">"authorizationUrl"</span>: <span class="hljs-string">"http://swagger.io/api/oauth/dialog"</span>,
+            <span class="hljs-string">"flow"</span>: <span class="hljs-string">"implicit"</span>,
+            <span class="hljs-string">"scopes"</span>: {
+                <span class="hljs-string">"write:pets"</span>: <span class="hljs-string">"modify things"</span>,
+                <span class="hljs-string">"read:pets"</span>: <span class="hljs-string">"read things"</span>
+            }
+        }
+    },
+    ...
+  },
+  <span class="hljs-string">"routes"</span>: {
+    <span class="hljs-string">"authenticationModule"</span>: <span class="hljs-string">"./authentication.ts"</span>,
+    ...
+  }
+}</code></pre>
+				<p>In the middleware, export the function based on which library (Express, Koa, Hapi) you are using. You only create 1 function to handle all authenticate types. The <code>securityName</code> and <code>scopes</code> come from the annotation you put above your controller function.
+				<code>./authentication.ts</code></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">'express'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> jwt <span class="hljs-keyword">from</span> <span class="hljs-string">'jsonwebtoken'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">expressAuthentication</span>(<span class="hljs-params">request: express.Request, securityName: <span class="hljs-built_in">string</span>, scopes?: <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">any</span>&gt; </span>{
+  <span class="hljs-keyword">if</span> (securityName === <span class="hljs-string">'api_token'</span>) {
+    <span class="hljs-keyword">let</span> token;
+    <span class="hljs-keyword">if</span> (request.query &amp;&amp; request.query.access_token) {
+      token = request.query.access_token;
+    }
+
+    <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'abc123456'</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve({
+        id: <span class="hljs-number">1</span>,
+        name: <span class="hljs-string">'Ironman'</span>
+      });
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject({});
+    }
+  }
+
+  <span class="hljs-keyword">if</span> (securityName === <span class="hljs-string">'jwt'</span>) {
+    <span class="hljs-keyword">const</span> token = request.body.token || request.query.token || request.headers[<span class="hljs-string">'x-access-token'</span>];
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+      <span class="hljs-keyword">if</span> (!token) {
+        reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"No token provided"</span>))
+      }
+      jwt.verify(token, <span class="hljs-string">"[secret]"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err: <span class="hljs-built_in">any</span>, decoded: <span class="hljs-built_in">any</span></span>) </span>{
+        <span class="hljs-keyword">if</span> (err) {
+          reject(err)
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-comment">// Check if JWT contains all required scopes</span>
+          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> scope of scopes) {
+            <span class="hljs-keyword">if</span> (!decoded.scopes.includes(scope)) {
+              reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"JWT does not contain required scope."</span>));
+            }
+          }
+          resolve(decoded)
+        }
+      });
+    });
+  }
+};
+
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> hapi <span class="hljs-keyword">from</span> <span class="hljs-string">'@hapi/hapi'</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hapiAuthentication</span>(<span class="hljs-params">request: hapi.Request, securityName: <span class="hljs-built_in">string</span>, scopes?: <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">any</span>&gt; </span>{
+    <span class="hljs-comment">// See above</span>
+}
+
+<span class="hljs-keyword">import</span> { Request } <span class="hljs-keyword">from</span> <span class="hljs-string">'koa'</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">koaAuthentication</span>(<span class="hljs-params">request: Request, securityName: <span class="hljs-built_in">string</span>, scopes?: <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">any</span>&gt; </span>{
+    <span class="hljs-comment">// See above</span>
+}</code></pre>
+				<p><code>./controllers/securityController.ts</code></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Get, Route, Security, Response } <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'secure'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> SecureController {
+  <span class="hljs-meta">@Response</span>&lt;ErrorResponseModel&gt;(<span class="hljs-string">'Unexpected error'</span>)
+  <span class="hljs-meta">@Security</span>(<span class="hljs-string">'api_token'</span>)
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">"UserInfo"</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> userInfo(<span class="hljs-meta">@Request</span>() request: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">Promise</span>&lt;UserResponseModel&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(request.user);
+  }
+
+  <span class="hljs-meta">@Security</span>(<span class="hljs-string">'jwt'</span>, [<span class="hljs-string">'admin'</span>])
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">"EditUser"</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> userInfo(<span class="hljs-meta">@Request</span>() request: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>&gt; {
+    <span class="hljs-comment">// Do something here</span>
+  }
+}</code></pre>
+				<a href="#path-mapping" id="path-mapping" style="color: inherit; text-decoration: none;">
+					<h3>Path mapping</h3>
+				</a>
+				<p>Per the <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">TypeScript Handbook</a> under <a href="https://www.typescriptlang.org/docs/handbook/module-resolution.html">module resolution</a>:</p>
+				<blockquote>
+					<p>Sometimes modules are not directly located under baseUrl. For instance, an import to a module &quot;jquery&quot; would be translated at runtime to &quot;node_modules\jquery\dist\jquery.slim.min.js&quot;. Loaders use a mapping configuration to map module names to files at run-time, see RequireJs documentation and SystemJS documentation.</p>
+					<p>The TypeScript compiler supports the declaration of such mappings using &quot;paths&quot; property in tsconfig.json files. Here is an example for how to specify the &quot;paths&quot; property for jquery.</p>
+				</blockquote>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"compilerOptions"</span>: {
+    <span class="hljs-string">"baseUrl"</span>: <span class="hljs-string">"."</span>, <span class="hljs-comment">// This must be specified if "paths" is.</span>
+    <span class="hljs-string">"paths"</span>: {
+      <span class="hljs-string">"jquery"</span>: [<span class="hljs-string">"node_modules/jquery/dist/jquery"</span>] <span class="hljs-comment">// This mapping is relative to "baseUrl"</span>
+    }
+  }
+}</code></pre>
+				<p>If you have a project that utilized this functionality, you can configure the internal generators to use the correct paths by providing a compilerOptions property to route configuration property in tsoa.json.</p>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"spec"</span>: {
+    ...
+  },
+  <span class="hljs-string">"routes"</span>: {
+    ...
+  },
+   <span class="hljs-string">"compilerOptions"</span>: {
+        <span class="hljs-string">"baseUrl"</span>: <span class="hljs-string">"./path/to/base/url"</span>,
+        <span class="hljs-string">"paths"</span>: {
+            <span class="hljs-string">"exampleLib"</span>: <span class="hljs-string">"./path/to/example/lib"</span>
+        }
+    }
+}</code></pre>
+				<a href="#uploading-files" id="uploading-files" style="color: inherit; text-decoration: none;">
+					<h3>Uploading files</h3>
+				</a>
+				<p>This requires to have multer installed:</p>
+				<p><code>npm install --save multer</code></p>
+				<p>Inside a controller resource, call handleFile and pass the express Request to resolve &#39;file&#39;. This also handles multipart/form-data. A quick sample:</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Get, Route, Security, Response } <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">'express'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> multer <span class="hljs-keyword">from</span> <span class="hljs-string">'multer'</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'files'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FilesController {
+
+  <span class="hljs-meta">@Post</span>(<span class="hljs-string">'uploadFile'</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> uploadFile(<span class="hljs-meta">@Request</span>() request: express.Request): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+    <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.handleFile(request);
+    <span class="hljs-comment">// file will be in request.randomFileIsHere, it is a buffer</span>
+    <span class="hljs-keyword">return</span> {};
+  }
+
+  <span class="hljs-keyword">private</span> handleFile(request: express.Request): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+    <span class="hljs-keyword">const</span> multerSingle = multer().single(<span class="hljs-string">'randomFileIsHere'</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+      multerSingle(request, <span class="hljs-literal">undefined</span>, <span class="hljs-keyword">async</span> (error) =&gt; {
+        <span class="hljs-keyword">if</span> (error) {
+          reject(error);
+        }
+        resolve();
+      });
+    });
+  }
+}</code></pre>
+				<p>The according OpenAPI definition can be merge-overwritten inside <code>tsoa.json</code>. Here is a quick sample, what the previous request should look like.</p>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"spec"</span>: {
+    ...
+    <span class="hljs-string">"specMerging"</span>: <span class="hljs-string">"recursive"</span>,
+    <span class="hljs-string">"spec"</span>: {
+      <span class="hljs-string">"paths"</span>: {
+        <span class="hljs-string">"/files/uploadFile"</span>: {
+          <span class="hljs-string">"post"</span>: {
+            <span class="hljs-string">"consumes"</span>: [
+              <span class="hljs-string">"multipart/form-data"</span>
+            ],
+            <span class="hljs-string">"parameters"</span>: [
+              {
+                <span class="hljs-string">"in"</span>: <span class="hljs-string">"formData"</span>,
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"randomFileIsHere"</span>,
+                <span class="hljs-string">"required"</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-string">"type"</span>: <span class="hljs-string">"file"</span>
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  <span class="hljs-string">"routes"</span>: {
+     ...
+  }
+}</code></pre>
+				<a href="#tags" id="tags" style="color: inherit; text-decoration: none;">
+					<h3>Tags</h3>
+				</a>
+				<p>If you have a project that needs a description and/or external docs for tags, you can configure the internal generators to use the correct tags definitions and external docs by providing a tags property to spec property in tsoa.json.</p>
+				<pre><code class="language-js">{
+  <span class="hljs-string">"spec"</span>: {
+    <span class="hljs-string">"tags"</span>:  [
+      {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"User"</span>,
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Operations about users"</span>,
+        <span class="hljs-string">"externalDocs"</span>: {
+          <span class="hljs-string">"description"</span>: <span class="hljs-string">"Find out more about users"</span>,
+          <span class="hljs-string">"url"</span>: <span class="hljs-string">"http://swagger.io"</span>
+        }
+      }
+    ],
+    ...
+  },
+  <span class="hljs-string">"routes"</span>: {
+    ...
+  }
+}</code></pre>
+				<a href="#using-awesome-openapi-tools" id="using-awesome-openapi-tools" style="color: inherit; text-decoration: none;">
+					<h3>Using awesome OpenAPI tools</h3>
+				</a>
+				<p>Now that you have a OpenAPI Specification (OAS) (swagger.json), you can use all kinds of amazing tools that <a href="http://openapi.tools//">generate documentation, client SDKs, and more</a>.</p>
+				<a href="#decorators" id="decorators" style="color: inherit; text-decoration: none;">
+					<h2>Decorators</h2>
+				</a>
+				<a href="#security" id="security" style="color: inherit; text-decoration: none;">
+					<h3>Security</h3>
+				</a>
+				<p>The <code>Security</code> decorator can be used above controller methods to indicate that there should be authentication before running those methods. As described above, the authentication is done in a file that&#39;s referenced in tsoa&#39;s configuration. When using the <code>Security</code> decorator, you can choose between having one or multiple authentication methods. If you choose to have multiple authentication methods, you can choose between having to pass one of the methods (OR):</p>
+				<pre><code class="language-ts"><span class="hljs-meta">@Security</span>(<span class="hljs-string">'tsoa_auth'</span>, [<span class="hljs-string">'write:pets'</span>, <span class="hljs-string">'read:pets'</span>])
+<span class="hljs-meta">@Security</span>(<span class="hljs-string">'api_key'</span>)
+<span class="hljs-meta">@Get</span>(<span class="hljs-string">'OauthOrAPIkey'</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> GetWithOrSecurity(<span class="hljs-meta">@Request</span>() request: express.Request): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+}</code></pre>
+				<p>or having to pass all of them (AND):</p>
+				<pre><code class="language-ts"><span class="hljs-meta">@Security</span>({
+  tsoa_auth: [<span class="hljs-string">'write:pets'</span>, <span class="hljs-string">'read:pets'</span>],
+  api_key: [],
+})
+<span class="hljs-meta">@Get</span>(<span class="hljs-string">'OauthAndAPIkey'</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> GetWithAndSecurity(<span class="hljs-meta">@Request</span>() request: express.Request): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+}</code></pre>
+				<a href="#tags-1" id="tags-1" style="color: inherit; text-decoration: none;">
+					<h3>Tags</h3>
+				</a>
+				<p>Tags are defined with the <code>@Tags(&#39;tag1&#39;, &#39;tag2&#39;, ...)</code> decorator in the controllers and/or in the methods like in the following examples.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Get, Route, Response, Tags } <span class="hljs-keyword">from</span> <span class="hljs-string">'tsoa'</span>;
+
+<span class="hljs-meta">@Route</span>(<span class="hljs-string">'user'</span>)
+<span class="hljs-meta">@Tags</span>(<span class="hljs-string">'User'</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UserController {
+  <span class="hljs-meta">@Response</span>&lt;ErrorResponseModel&gt;(<span class="hljs-string">'Unexpected error'</span>)
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">'UserInfo'</span>)
+  <span class="hljs-meta">@Tags</span>(<span class="hljs-string">'Info'</span>, <span class="hljs-string">'Get'</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> userInfo(<span class="hljs-meta">@Request</span>() request: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">Promise</span>&lt;UserResponseModel&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(request.user);
+  }
+
+  <span class="hljs-meta">@Get</span>(<span class="hljs-string">'EditUser'</span>)
+  <span class="hljs-meta">@Tags</span>(<span class="hljs-string">'Edit'</span>)
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> userInfo(<span class="hljs-meta">@Request</span>() request: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>&gt; {
+    <span class="hljs-comment">// Do something here</span>
+  }
+}</code></pre>
+				<a href="#operationid" id="operationid" style="color: inherit; text-decoration: none;">
+					<h3>OperationId</h3>
+				</a>
+				<p>Set operationId parameter under operation&#39;s path.
+				Useful for use with OpenAPI code generation tool since this parameter is used to name the function generated in the client SDK.</p>
+				<pre><code class="language-ts"><span class="hljs-meta">@Get</span>()
+<span class="hljs-meta">@OperationId</span>(<span class="hljs-string">'findDomain'</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> find(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+
+}</code></pre>
+				<a href="#deprecated" id="deprecated" style="color: inherit; text-decoration: none;">
+					<h3>Deprecated</h3>
+				</a>
+				<p>Declares this endpoint to be deprecated. Useful for when you are migrating endpoints and wants to keep a outdated
+				version live until all consumers migrate to use the new endpoint version.</p>
+				<pre><code class="language-ts"><span class="hljs-meta">@Get</span>()
+<span class="hljs-meta">@Deprecated</span>()
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> find(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+
+}</code></pre>
+				<a href="#hidden" id="hidden" style="color: inherit; text-decoration: none;">
+					<h3>Hidden</h3>
+				</a>
+				<p>Excludes this endpoint from the generated OpenAPI Specification document.</p>
+				<pre><code class="language-ts">  <span class="hljs-meta">@Get</span>()
+  <span class="hljs-meta">@Hidden</span>()
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> find(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+
+  }</code></pre>
+				<p>It can also be set at the controller level to exclude all of its endpoints from the OpenAPI Specification document.</p>
+				<pre><code class="language-ts"><span class="hljs-meta">@Hidden</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HiddenController {
+  <span class="hljs-meta">@Get</span>()
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> find(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+
+  }
+
+  <span class="hljs-meta">@Post</span>()
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> create(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt; {
+
+  }
+}</code></pre>
+				<a href="#command-line-interface" id="command-line-interface" style="color: inherit; text-decoration: none;">
+					<h2>Command Line Interface</h2>
+				</a>
+				<p>For information on the configuration object (tsoa.json), check out the following:</p>
+				<p><a href="./src/config.ts">Configuration definition</a></p>
+				<p><a href="./tsoa.json">Configuration sample</a></p>
+				<a href="#openapi-specification-oas-generation" id="openapi-specification-oas-generation" style="color: inherit; text-decoration: none;">
+					<h3>OpenAPI Specification (OAS) generation</h3>
+				</a>
+				<pre><code><span class="hljs-attribute">Usage</span>: tsoa spec [options]
+
+<span class="routeros">Options:
+   --configuration, -c  tsoa configuration file;<span class="hljs-built_in"> default </span>is tsoa.json <span class="hljs-keyword">in</span> the working directory  [string]
+   --host  API host                                                                             [string]
+   --basePath  Base API path                                                                    [string]</span></code></pre>
+				<a href="#route-generation" id="route-generation" style="color: inherit; text-decoration: none;">
+					<h3>Route generation</h3>
+				</a>
+				<pre><code><span class="hljs-attribute">Usage</span>: tsoa routes [options]
+
+<span class="routeros">Options:
+  --configuration, -c  tsoa configuration file;<span class="hljs-built_in"> default </span>is tsoa.json <span class="hljs-keyword">in</span> the working directory   [string]
+  --basePath  Base API path                                                                     [string]</span></code></pre>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
+				<p><a href="https://github.com/lukeautry/ts-app">An example project with tsoa implementation and client library generation/React integration is available here</a></p>
+				<p>See example controllers in <a href="tests/fixtures/controllers">the tests</a></p>
+				<a href="#help-wanted" id="help-wanted" style="color: inherit; text-decoration: none;">
+					<h2>Help wanted</h2>
+				</a>
+				<a href="#contributing-code" id="contributing-code" style="color: inherit; text-decoration: none;">
+					<h3>Contributing code</h3>
+				</a>
+				<p>To contribute (via a PR), please first see the <a href="https://github.com/lukeautry/tsoa/tree/master/docs/CONTRIBUTING.md">Contributing Guide</a></p>
+				<a href="#becoming-a-maintainer" id="becoming-a-maintainer" style="color: inherit; text-decoration: none;">
+					<h3>Becoming a maintainer</h3>
+				</a>
+				<p>tsoa wants additional maintainers! The library has increased in popularity and has quite a lot of pull requests and issues. <a href="https://github.com/lukeautry/tsoa/issues/236">Please post in this issue</a> if you&#39;re willing to take on the role of a maintainer.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
