@@ -1,0 +1,9 @@
+{
+  "mode": "library",
+  "inputFiles": ["./src/index.ts"],
+  "excludeNotExported": true,
+  "exclude": ["src/interfaces/*", "src/routeGeneration/*", "src/metadataGeneration/*", "src/swagger/*", "src/utils/*", "src/config.ts", "src/decoratos/*", "src/module/*", "src/decorators/*"],
+  "out": "typedoc/",
+  "includeVersion": true
+}
+
