@@ -2,14 +2,10 @@
   "mode": "file",
   "inputFiles": ["./src/index.ts"],
   "excludeNotExported": true,
-  "exclude": [
-    "src/utils/*",
-    "src/metadataGeneration/*",
-    "src/swagger/*",
-    "src/cli.ts",
-    "src/routeGeneration/tsoa-route.ts"
-  ],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "stripInternal": true,
+  "exclude": ["src/utils/*", "src/metadataGeneration/*", "src/swagger/*", "src/routeGeneration/*", "src/cli.ts"],
   "out": "typedoc/",
   "includeVersion": true
 }
-
