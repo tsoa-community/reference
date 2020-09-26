@@ -1,11 +1,12 @@
 {
-  "mode": "file",
-  "inputFiles": ["./src/index.ts"],
-  "excludeNotExported": true,
+  "mode": "modules",
+  "inputFiles": ["."],
+  "out": "typedoc",
+  "name": "tsoa",
+  "exclude": ["**/node_modules/**", "**/*.spec.ts"],
+  "excludeNotExported": false,
+  "lernaExclude": ["tsoa-tests"],
+  "readme": "README.MD",
   "excludePrivate": true,
-  "excludeProtected": true,
-  "stripInternal": true,
-  "exclude": ["src/utils/*", "src/metadataGeneration/*", "src/swagger/*", "src/routeGeneration/*", "src/cli.ts"],
-  "out": "typedoc/",
-  "includeVersion": true
+  "version": true
 }
