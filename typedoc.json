@@ -4,9 +4,8 @@
   "out": "typedoc",
   "name": "tsoa",
   "exclude": ["**/node_modules/**", "**/*.spec.ts"],
-  "excludeNotExported": false,
+  "excludeNotExported": true,
   "lernaExclude": ["tsoa-tests"],
   "readme": "README.MD",
-  "excludePrivate": true,
-  "version": true
+  "excludePrivate": true
 }
