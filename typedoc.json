@@ -8,5 +8,5 @@
   "lernaExclude": ["tsoa-tests"],
   "readme": "README.MD",
   "excludePrivate": true,
-  "version": true
+  "includeVersion": true
 }
