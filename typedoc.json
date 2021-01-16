@@ -1,0 +1,9 @@
+{
+  "entryPoints": ["packages/tsoa/src/index.ts"],
+  "out": "typedoc",
+  "name": "tsoa",
+  "exclude": ["**/node_modules/**", "**/*.spec.ts"],
+  "readme": "README.MD",
+  "excludePrivate": true,
+  "includeVersion": true
+}
