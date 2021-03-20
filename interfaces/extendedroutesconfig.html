@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ExtendedRoutesConfig | tsoa - v3.5.0</title>
-	<meta name="description" content="Documentation for tsoa - v3.5.0">
+	<title>ExtendedRoutesConfig | tsoa - v3.6.0</title>
+	<meta name="description" content="Documentation for tsoa - v3.6.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<script async src="../assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">tsoa - v3.5.0</a>
+					<a href="../index.html" class="title">tsoa - v3.6.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -52,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../modules.html">tsoa - v3.5.0</a>
+					<a href="../modules.html">tsoa - v3.6.0</a>
 				</li>
 				<li>
 					<a href="extendedroutesconfig.html">ExtendedRoutesConfig</a>
@@ -93,6 +93,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="extendedroutesconfig.html#middleware" class="tsd-kind-icon">middleware</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="extendedroutesconfig.html#middlewaretemplate" class="tsd-kind-icon">middleware<wbr>Template</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extendedroutesconfig.html#noimplicitadditionalproperties" class="tsd-kind-icon">no<wbr>Implicit<wbr>Additional<wbr>Properties</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="extendedroutesconfig.html#nowriteifunchanged" class="tsd-kind-icon">no<wbr>Write<wbr>IfUnchanged</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="extendedroutesconfig.html#routesdir" class="tsd-kind-icon">routes<wbr>Dir</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="extendedroutesconfig.html#routesfilename" class="tsd-kind-icon">routes<wbr>File<wbr>Name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="extendedroutesconfig.html#usesuccessresponsecode" class="tsd-kind-icon">use<wbr>Success<wbr>Response<wbr>Code</a></li>
@@ -106,11 +107,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="authenticationmodule" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> authentication<wbr>Module</h3>
-					<div class="tsd-signature tsd-kind-icon">authentication<wbr>Module<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">authentication<wbr>Module<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#authenticationmodule">authenticationModule</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:168</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:171</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -122,11 +123,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="basepath" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> base<wbr>Path</h3>
-					<div class="tsd-signature tsd-kind-icon">base<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">base<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#basepath">basePath</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:152</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:155</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -138,7 +139,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="controllerpathglobs" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> controller<wbr>Path<wbr>Globs</h3>
-					<div class="tsd-signature tsd-kind-icon">controller<wbr>Path<wbr>Globs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">controller<wbr>Path<wbr>Globs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in packages/cli/dist/cli.d.ts:12</li>
@@ -158,11 +159,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="iocmodule" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ioc<wbr>Module</h3>
-					<div class="tsd-signature tsd-kind-icon">ioc<wbr>Module<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">ioc<wbr>Module<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#iocmodule">iocModule</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:164</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:167</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,11 +175,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="middleware" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> middleware</h3>
-					<div class="tsd-signature tsd-kind-icon">middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;express&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hapi&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;koa&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;express&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hapi&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;koa&quot;</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#middleware">middleware</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:156</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:159</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,11 +191,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="middlewaretemplate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> middleware<wbr>Template</h3>
-					<div class="tsd-signature tsd-kind-icon">middleware<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">middleware<wbr>Template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#middlewaretemplate">middlewareTemplate</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:160</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:163</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -214,13 +215,29 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="nowriteifunchanged" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> no<wbr>Write<wbr>IfUnchanged</h3>
+					<div class="tsd-signature tsd-kind-icon">no<wbr>Write<wbr>IfUnchanged<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#nowriteifunchanged">noWriteIfUnchanged</a></p>
+						<ul>
+							<li>Defined in packages/runtime/dist/config.d.ts:151</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Avoid writing the generated route file if the existing file is identical (useful to optimize watch processes); false by default</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="routesdir" class="tsd-anchor"></a>
 					<h3>routes<wbr>Dir</h3>
 					<div class="tsd-signature tsd-kind-icon">routes<wbr>Dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#routesdir">routesDir</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:144</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:143</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,11 +249,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="routesfilename" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> routes<wbr>File<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">routes<wbr>File<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">routes<wbr>File<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#routesfilename">routesFileName</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:148</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:147</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -248,11 +265,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="usesuccessresponsecode" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> use<wbr>Success<wbr>Response<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">use<wbr>Success<wbr>Response<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<div class="tsd-signature tsd-kind-icon">use<wbr>Success<wbr>Response<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="routesconfig.html">RoutesConfig</a>.<a href="routesconfig.html#usesuccessresponsecode">useSuccessResponseCode</a></p>
 						<ul>
-							<li>Defined in packages/runtime/dist/config.d.ts:175</li>
+							<li>Defined in packages/runtime/dist/config.d.ts:178</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -307,6 +324,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="extendedroutesconfig.html#noimplicitadditionalproperties" class="tsd-kind-icon">no<wbr>Implicit<wbr>Additional<wbr>Properties</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="extendedroutesconfig.html#nowriteifunchanged" class="tsd-kind-icon">no<wbr>Write<wbr>IfUnchanged</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="extendedroutesconfig.html#routesdir" class="tsd-kind-icon">routes<wbr>Dir</a>
